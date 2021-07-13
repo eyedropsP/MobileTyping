@@ -1,5 +1,6 @@
-using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MobileTyping.Scripts
 {
@@ -7,6 +8,9 @@ namespace MobileTyping.Scripts
     {
         private QwertySentenceGenerator _qwertySentenceGenerator;
         private SentenceCollator _sentenceCollator;
+        private TouchScreenKeyboard _keyboard;
+        [SerializeField] private Text _isKanaText;
+        [SerializeField] private Text _inputText;
 
         /*
          ここでセンテンスの生成すると責務的に違いすぎる気がする
@@ -20,19 +24,20 @@ namespace MobileTyping.Scripts
 
         private void Start()
         {
+            _keyboard = TouchScreenKeyboard.Open("");
+            TouchScreenKeyboard.hideInput = true;
         }
 
-        private void Update()
+        private void OnGUI()
         {
-            if (!Input.anyKeyDown) return;
+            var inputText = _keyboard.text;
+            _isKanaText.text = IsKana(inputText) ? "ひらがな" : "それ以外";
+            _inputText.text = inputText;
+        }
 
-            foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
-            {
-                if (Input.GetKeyDown(keyCode))
-                {
-                    // Debug.Log(keyCode.ToString());
-                }
-            }
+        public static bool IsKana(string inputKana)
+        {
+            return Regex.IsMatch(inputKana, @"^\p{IsHiragana}*$");
         }
     }
 }
