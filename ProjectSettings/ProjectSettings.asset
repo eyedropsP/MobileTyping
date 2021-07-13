@@ -716,7 +716,7 @@ PlayerSettings:
   cloudServicesEnabled:
     Analytics: 1
     Build: 0
-    Collab: 1
+    Collab: 0
     Game Performance: 0
     Purchasing: 0
     UDP: 0
@@ -734,7 +734,7 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: a1911a76-c126-475c-b504-11c36a0305b3
+  cloudProjectId: 6d11de60-e24c-4568-b155-41aaf6444537
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: MobileTyping
